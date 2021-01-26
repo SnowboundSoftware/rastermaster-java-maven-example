@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<!-- Copyright (C) 2021 by Snowbound Software Corporation. All rights reserved.                    -->
+	<!-- This example is provided as-is and without warranty.                                          -->
+	<!-- Please visit our main support page at snowbound.com/support or contact us at +1-617-607-2010. -->
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.snowbound.re.maven_examples</groupId>
+	<artifactId>rastermaster_java_maven_sample</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	
+	<repositories>
+		<!-- This repository is listed here so we can fetch Snowbound artifacts -->
+		<repository>
+			<id>snowbound-public</id>
+			<name>Snowbound Public Repository</name>
+			<url>https://repo.snowbound.com/repository/snowbound-public/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+
+		<!-- Not all required iText artifacts are on mvnrepository.com -->
+		<repository>
+			<id>itext-public</id>
+			<name>iText Public Repository</name>
+			<url>https://repo.itextsupport.com/releases/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
+	<properties>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+	</properties>
+
+	<dependencies>
+		<!-- Snowbound RasterMaster (https://repo.snowbound.com/) -->
+		<dependency>
+			<groupId>com.snowbound.rastermaster.java</groupId>
+			<artifactId>rastermaster</artifactId>
+			<version>20.6.0</version>
+		</dependency>
+	</dependencies>
+</project>
