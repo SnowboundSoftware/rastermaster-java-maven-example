@@ -1,6 +1,6 @@
 # RasterMaster Sample Maven Project
 
-This sample project will convert all pages from the input file and output them as `PNG`. You must provide a valid `SnowboundLicense.jar` to use this library or you will receive an error message of `FORMAT_NOT_SUPPORTED` or a license error.
+This sample project will convert all pages from the input file and output them as `PNG`. You must provide a valid `slicense.json` to use this library or you will receive watermarks on every page converted.
 
 
 
@@ -18,7 +18,7 @@ This sample project will convert all pages from the input file and output them a
 
 Using Maven only, you can compile and run this test app in a command prompt using the following command
 
-`mvn compile exec:java -Dexec.mainClass="com.snowbound.re.maven_examples.conversion.Main" -Dexec.arguments="SomePDF.pdf,SnowboundLicense.jar"`
+`mvn compile exec:java -Dexec.mainClass="com.snowbound.re.maven_examples.conversion.Main" -Dexec.arguments="SomePDF.pdf,slicense.json"`
 
 
 
@@ -70,7 +70,7 @@ If you already have a Maven project, follow these three steps.
 <dependency>
 	<groupId>com.snowbound.rastermaster.java</groupId>
 	<artifactId>rastermaster</artifactId>
-	<version>20.6.0</version>
+	<version>20.8.0</version>
 </dependency>
 ```
 
