@@ -17,7 +17,7 @@ public class Main
 	 * Snowbound RasterMaster document conversion example using Maven
 	 *
 	 * @param args Program expects args[0] to be the path to an input file
-	 *                and args[1] to be the path to a SnowboundLicense.jar
+	 *                and args[1] to be the path to a slicense.json
 	 */
 	public static void main(String[] args)
 	{
