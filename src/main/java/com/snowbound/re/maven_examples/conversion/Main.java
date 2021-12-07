@@ -22,16 +22,18 @@ public class Main
 	public static void main(String[] args)
 	{
 		String inputFile;
-		String licenseFile;
+		String licenseFile = "slicense.json";
 
 		// Change this to a licensed format if desired
 		int outputFormat = Defines.PNG;
 
 		// Parse arguments
-		if(args.length == 2)
+		if(args.length > 0)
 		{
 			inputFile = args[0];
-			licenseFile = args[1];
+
+			if(args.length > 1)
+				licenseFile = args[1];
 
 			// Check if the input file exists
 			if(!new File(inputFile).exists())
@@ -39,18 +41,11 @@ public class Main
 				System.out.println("Input file specified does NOT exist");
 				return;
 			}
-
-			// Check if the license file exists
-			if(!new File(licenseFile).exists())
-			{
-				System.out.println("License file specified does NOT exist");
-				return;
-			}
 		}
 		else
 		{
 			// Called if no arguments are presented
-			System.out.println("Requires input file path and license JAR file path arguments");
+			System.out.println("Requires input file path and optionally a license json file path arguments");
 			return;
 		}
 
@@ -61,33 +56,31 @@ public class Main
 	/**
 	 * Convert a document
 	 * @param inputFile File to convert
-	 * @param licenseFile Path to a SnowboundLicense.jar
+	 * @param licenseFile Path to a slicense.json
 	 * @param outputFormat Format to output as
 	 */
 	static void convertDocument(String inputFile, String licenseFile, int outputFormat)
 	{
 		// create the Snowbound image object
 		Snowbnd snowImage = new Snowbnd();
-		int status;
+		int status = 0;
 
 		// Load license
-		try
-		{
-			status = snowImage.IMGLOW_set_license_jar(new FileInputStream(licenseFile));
+		if(new File(licenseFile).exists()) {
+			try {
+				status = snowImage.IMGLOW_set_license_path(new FileInputStream(licenseFile));
 
-			if (0 > status)
-			{
-				System.out.println(
-						"ERROR: " + status + " [" + ErrorCodes.getErrorMessage(status) + "] loading license JAR"
-				);
+				if (0 > status) {
+					System.out.println(
+							"ERROR: " + status + " [" + ErrorCodes.getErrorMessage(status) + "] loading license"
+					);
+				}
+
+				System.out.println("Licensed to: " + LicenseManager.customerName());
+			} catch (FileNotFoundException e) {
+				System.out.println(e.getMessage());
+				return;
 			}
-
-			System.out.println("Licensed to: " + LicenseManager.customerName());
-		}
-		catch (FileNotFoundException e)
-		{
-			System.out.println(e.getMessage());
-			return;
 		}
 
 		// create the input and output file extensions
@@ -132,7 +125,7 @@ public class Main
 					try
 					{
 						RandomAccessFile outFileRAF = new RandomAccessFile(
-								inputFile + page + "_out." + outputExt.getExtension(),
+								inputFile + "_" + page + "_out." + outputExt.getExtension(),
 								"rw"
 						);
 						outFileRAF.write(vectorSVG, 0, length[0]);
@@ -163,7 +156,7 @@ public class Main
 				int[] error = new int[2];
 				byte[] extractedText = snowImage.IMGLOW_extract_text(inputFile, length, error, page);
 				status = snowImage.IMG_save_document(
-						(inputFile + page + "_out." + outputExt.getExtension()),
+						(inputFile + "_" + page + "_out." + outputExt.getExtension()),
 						extractedText,
 						Defines.PDF
 				);
@@ -189,7 +182,7 @@ public class Main
 
 				// save the current page and print the resulting status code
 				status = snowImage.IMG_save_bitmap(
-						inputFile + page + "_out." + outputExt.getExtension(),
+						inputFile + "_" + page + "_out." + outputExt.getExtension(),
 						outputFormat
 				);
 			}

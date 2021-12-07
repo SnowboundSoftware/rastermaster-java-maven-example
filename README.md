@@ -1,6 +1,6 @@
 # RasterMaster Sample Maven Project
 
-This sample project will convert all pages from the input file and output them as `PNG`. You must provide a valid `SnowboundLicense.jar` to use this library or you will receive an error message of `FORMAT_NOT_SUPPORTED` or a license error.
+This sample project will convert all pages from the input file and output them as `PNG`. You must provide a valid `slicense.json` to use this library or you will receive watermarks on every page converted.
 
 
 

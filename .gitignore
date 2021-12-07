@@ -2,3 +2,5 @@ target/
 log/
 *.iml
 .idea/
+test-documents/*out*
+**/.DS_Store

@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<!-- Copyright (C) 2021 by Snowbound Software Corporation. All rights reserved.                    -->
 	<!-- This example is provided as-is and without warranty.                                          -->
 	<!-- Please visit our main support page at snowbound.com/support or contact us at +1-617-607-2010. -->
@@ -40,8 +38,13 @@
 	</repositories>
 
 	<properties>
+		<!-- RasterMaster 20.8 requires JDK 1.8 or newer -->
+		<!-- Oracle and OpenJDK are the tested runtime vendors -->
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
+
+		<!-- Source file encoding -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
 	<dependencies>
@@ -49,7 +52,34 @@
 		<dependency>
 			<groupId>com.snowbound.rastermaster.java</groupId>
 			<artifactId>rastermaster</artifactId>
-			<version>20.6.0</version>
+			<version>20.8.0</version>
 		</dependency>
 	</dependencies>
+
+	<build>
+		<plugins>
+			<!-- Copy runtime dependencies that should only appear in packaged artifact -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<version>3.2.0</version>
+				<executions>
+					<execution>
+						<id>Copy dependencies (with version numbers)</id>
+						<phase>package</phase>
+						<goals>
+							<goal>copy-dependencies</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${project.build.directory}/dependencies</outputDirectory>
+							<overWriteSnapshots>true</overWriteSnapshots>
+							<overWriteReleases>true</overWriteReleases>
+							<stripVersion>false</stripVersion>
+							<stripClassifier>false</stripClassifier>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
 </project>
