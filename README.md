@@ -70,7 +70,7 @@ If you already have a Maven project, follow these three steps.
 <dependency>
 	<groupId>com.snowbound.rastermaster.java</groupId>
 	<artifactId>rastermaster</artifactId>
-	<version>20.8.0</version>
+	<version>20.9.0</version>
 </dependency>
 ```
 
