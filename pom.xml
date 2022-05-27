@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<!-- Copyright (C) 2021 by Snowbound Software Corporation. All rights reserved.                    -->
+	<!-- Copyright (C) 2022 by Snowbound Software Corporation. All rights reserved.                    -->
 	<!-- This example is provided as-is and without warranty.                                          -->
 	<!-- Please visit our main support page at snowbound.com/support or contact us at +1-617-607-2010. -->
 
@@ -52,7 +52,7 @@
 		<dependency>
 			<groupId>com.snowbound.rastermaster.java</groupId>
 			<artifactId>rastermaster</artifactId>
-			<version>20.8.0</version>
+			<version>20.9.0</version>
 		</dependency>
 	</dependencies>
 
