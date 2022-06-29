@@ -38,7 +38,7 @@ public class Main
 			// Check if the input file exists
 			if(!new File(inputFile).exists())
 			{
-				System.out.println("Input file specified does NOT exist");
+				System.Out.println("Input file specified does NOT exist");
 				return;
 			}
 		}
